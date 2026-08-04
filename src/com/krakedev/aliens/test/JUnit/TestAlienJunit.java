@@ -76,4 +76,61 @@ public class TestAlienJunit {
         assertTrue(alien.agregarOjos(7));
         assertFalse(alien.agregarOjos(1));
     }
+    
+    @Test
+    public void testCalculoPrecioTotalDespuesDeAgregarElementos() {
+        Alien alien = new Alien(20, "Verde");
+        alien.agregarBrazos(2);
+        alien.agregarPiernas(2);
+        alien.agregarOjos(3);
+
+        double esperado = alien.getPrecioCuerpo()
+                + (4 * alien.getPrecioExtremidad())
+                + (3 * alien.getPrecioOjo());
+
+        assertEquals(esperado, alien.getPrecioTotal(), 0.001);
+    }
+
+    @Test
+    public void testPrecioTotalInicialEsCero() {
+        Alien alien = new Alien(20, "Verde");
+        assertEquals(0, alien.getPrecioTotal(), 0.001);
+    }
+
+    @Test
+    public void testPrecioTotalNoCambiaSiSeExcedeLimiteDeExtremidades() {
+        Alien alien = new Alien(20, "Verde");
+        alien.agregarBrazos(10);
+        double precioConDiez = alien.getPrecioTotal();
+        alien.agregarPiernas(5); // excede el limite de 10, no debe agregarse
+        assertEquals(precioConDiez, alien.getPrecioTotal(), 0.001);
+    }
+
+    @Test
+    public void testPrecioTotalNoCambiaSiSeExcedeLimiteDeOjos() {
+        Alien alien = new Alien(20, "Verde");
+        alien.agregarOjos(5); // maximo para tamaño 20
+        double precioConCincoOjos = alien.getPrecioTotal();
+        alien.agregarOjos(1); // excede el maximo, no debe agregarse
+        assertEquals(precioConCincoOjos, alien.getPrecioTotal(), 0.001);
+    }
+
+    @Test
+    public void testComportamientoCompletoAlAgregarElementosEnPasos() {
+        Alien alien = new Alien(25, "Verde");
+
+        assertTrue(alien.agregarBrazos(3));
+        assertTrue(alien.agregarPiernas(2));
+        assertTrue(alien.agregarOjos(4));
+
+        assertEquals(3, alien.getNumeroBrazos());
+        assertEquals(2, alien.getNumeroPies());
+        assertEquals(4, alien.getNumeroOjos());
+
+        double esperado = alien.getPrecioCuerpo()
+                + (5 * alien.getPrecioExtremidad())
+                + (4 * alien.getPrecioOjo());
+
+        assertEquals(esperado, alien.getPrecioTotal(), 0.001);
+    }
 }

@@ -74,4 +74,22 @@ public class Alien {
         System.out.println("Precio extremidad: " + precioExtremidad);
         System.out.println("Precio ojo: " + precioOjo);
     }
+    
+    public boolean agregarBrazos(int cantidad) {
+        int totalExtremidades = numeroBrazos + numeroPies + cantidad;
+        if (totalExtremidades > 10) {
+            return false;
+        }
+        numeroBrazos += cantidad;
+        return true;
+    }
+
+    public boolean agregarPiernas(int cantidad) {
+        int totalExtremidades = numeroBrazos + numeroPies + cantidad;
+        if (totalExtremidades > 10) {
+            return false;
+        }
+        numeroPies += cantidad;
+        return true;
+    }
 }

@@ -33,4 +33,26 @@ public class TestAlienJunit {
         assertEquals(2.0, alien.getPrecioExtremidad(), 0.001);
         assertEquals(1.0, alien.getPrecioOjo(), 0.001);
     }
+    
+    @Test
+    public void testAgregarBrazosCasoValido() {
+        Alien alien = new Alien(15, "Verde");
+        assertTrue(alien.agregarBrazos(4));
+        assertEquals(4, alien.getNumeroBrazos());
+    }
+
+    @Test
+    public void testAgregarBrazosCasoLimite() {
+        Alien alien = new Alien(15, "Verde");
+        assertTrue(alien.agregarBrazos(10));
+        assertFalse(alien.agregarBrazos(1));
+    }
+
+    @Test
+    public void testAgregarBrazosYPiernasCombinado() {
+        Alien alien = new Alien(15, "Verde");
+        assertTrue(alien.agregarBrazos(6));
+        assertTrue(alien.agregarPiernas(4));
+        assertFalse(alien.agregarPiernas(1));
+    }
 }

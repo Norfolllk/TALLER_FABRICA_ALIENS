@@ -13,6 +13,7 @@ public class Alien {
     private double precioExtremidad;
     private double precioOjo;
     private double precioCuerpo;
+    private double precioTotal;
 
     public Alien(int tamanio, String color) {
         if (tamanio < TAMANIO_MIN) {
@@ -29,6 +30,7 @@ public class Alien {
         this.precioCuerpo = this.tamanio * 0.20;
         this.precioExtremidad = this.tamanio * 0.10;
         this.precioOjo = this.tamanio * 0.05;
+        this.precioTotal = 0;
     }
 
     public int getTamanio() {
@@ -63,24 +65,17 @@ public class Alien {
         return precioCuerpo;
     }
 
-    public void imprimir() {
-        System.out.println("----- ALIEN -----");
-        System.out.println("Tamanio: " + tamanio);
-        System.out.println("Color: " + color);
-        System.out.println("Numero de ojos: " + numeroOjos);
-        System.out.println("Numero de brazos: " + numeroBrazos);
-        System.out.println("Numero de pies: " + numeroPies);
-        System.out.println("Precio cuerpo: " + precioCuerpo);
-        System.out.println("Precio extremidad: " + precioExtremidad);
-        System.out.println("Precio ojo: " + precioOjo);
+    public double getPrecioTotal() {
+        return precioTotal;
     }
-    
+
     public boolean agregarBrazos(int cantidad) {
         int totalExtremidades = numeroBrazos + numeroPies + cantidad;
         if (totalExtremidades > 10) {
             return false;
         }
         numeroBrazos += cantidad;
+        calcularPrecioTotal();
         return true;
     }
 
@@ -90,9 +85,10 @@ public class Alien {
             return false;
         }
         numeroPies += cantidad;
+        calcularPrecioTotal();
         return true;
     }
-    
+
     public boolean agregarOjos(int cantidad) {
         int maximoOjos;
         if (tamanio <= 10) {
@@ -107,6 +103,25 @@ public class Alien {
             return false;
         }
         numeroOjos += cantidad;
+        calcularPrecioTotal();
         return true;
+    }
+
+    public void calcularPrecioTotal() {
+        int totalExtremidades = numeroBrazos + numeroPies;
+        precioTotal = precioCuerpo + (totalExtremidades * precioExtremidad) + (numeroOjos * precioOjo);
+    }
+
+    public void imprimir() {
+        System.out.println("----- ALIEN -----");
+        System.out.println("Tamanio: " + tamanio);
+        System.out.println("Color: " + color);
+        System.out.println("Numero de ojos: " + numeroOjos);
+        System.out.println("Numero de brazos: " + numeroBrazos);
+        System.out.println("Numero de pies: " + numeroPies);
+        System.out.println("Precio cuerpo: " + precioCuerpo);
+        System.out.println("Precio extremidad: " + precioExtremidad);
+        System.out.println("Precio ojo: " + precioOjo);
+        System.out.println("Precio total: " + precioTotal);
     }
 }

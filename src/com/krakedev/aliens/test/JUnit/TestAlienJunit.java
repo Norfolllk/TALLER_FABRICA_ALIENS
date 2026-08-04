@@ -55,4 +55,25 @@ public class TestAlienJunit {
         assertTrue(alien.agregarPiernas(4));
         assertFalse(alien.agregarPiernas(1));
     }
+    
+    @Test
+    public void testAgregarOjosCasoValidoTamanioPequenio() {
+        Alien alien = new Alien(8, "Verde");
+        assertTrue(alien.agregarOjos(3));
+        assertFalse(alien.agregarOjos(1));
+    }
+
+    @Test
+    public void testAgregarOjosTamanioMedio() {
+        Alien alien = new Alien(15, "Verde");
+        assertTrue(alien.agregarOjos(5));
+        assertFalse(alien.agregarOjos(1));
+    }
+
+    @Test
+    public void testAgregarOjosTamanioGrande() {
+        Alien alien = new Alien(25, "Verde");
+        assertTrue(alien.agregarOjos(7));
+        assertFalse(alien.agregarOjos(1));
+    }
 }

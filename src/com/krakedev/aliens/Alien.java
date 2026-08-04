@@ -92,4 +92,21 @@ public class Alien {
         numeroPies += cantidad;
         return true;
     }
+    
+    public boolean agregarOjos(int cantidad) {
+        int maximoOjos;
+        if (tamanio <= 10) {
+            maximoOjos = 3;
+        } else if (tamanio <= 20) {
+            maximoOjos = 5;
+        } else {
+            maximoOjos = 7;
+        }
+
+        if (numeroOjos + cantidad > maximoOjos) {
+            return false;
+        }
+        numeroOjos += cantidad;
+        return true;
+    }
 }

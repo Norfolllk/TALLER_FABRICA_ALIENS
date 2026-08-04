@@ -1,0 +1,36 @@
+package com.krakedev.aliens.test.JUnit;
+
+import com.krakedev.aliens.Alien;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+public class TestAlienJunit {
+
+    @Test
+    public void testAtributosAsignadosCorrectamente() {
+        Alien alien = new Alien(15, "Verde");
+        assertEquals(15, alien.getTamanio());
+        assertEquals("Verde", alien.getColor());
+    }
+
+    @Test
+    public void testTamanioMenorAlMinimo() {
+        Alien alien = new Alien(2, "Azul");
+        assertEquals(5, alien.getTamanio());
+    }
+
+    @Test
+    public void testTamanioMayorAlMaximo() {
+        Alien alien = new Alien(50, "Rojo");
+        assertEquals(30, alien.getTamanio());
+    }
+
+    @Test
+    public void testCalculoDePrecios() {
+        Alien alien = new Alien(20, "Amarillo");
+        assertEquals(4.0, alien.getPrecioCuerpo(), 0.001);
+        assertEquals(2.0, alien.getPrecioExtremidad(), 0.001);
+        assertEquals(1.0, alien.getPrecioOjo(), 0.001);
+    }
+}

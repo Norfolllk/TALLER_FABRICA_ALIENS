@@ -63,4 +63,15 @@ public class Alien {
         return precioCuerpo;
     }
 
+    public void imprimir() {
+        System.out.println("----- ALIEN -----");
+        System.out.println("Tamanio: " + tamanio);
+        System.out.println("Color: " + color);
+        System.out.println("Numero de ojos: " + numeroOjos);
+        System.out.println("Numero de brazos: " + numeroBrazos);
+        System.out.println("Numero de pies: " + numeroPies);
+        System.out.println("Precio cuerpo: " + precioCuerpo);
+        System.out.println("Precio extremidad: " + precioExtremidad);
+        System.out.println("Precio ojo: " + precioOjo);
+    }
 }
